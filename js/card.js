@@ -46,7 +46,7 @@ Card.prototype = {
 	// 		method: 'PUT',
 	// 		data: {
 	// 			name: cardName,
-	// 			bootcamp_kanban_column_id: self.id
+	// 			bootcamp_kanban_column_id: column.id
 	// 		},
     //         success: function(response){
 	// 			// cardDescription.text(self.cardName);
