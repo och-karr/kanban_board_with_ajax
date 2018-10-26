@@ -18,8 +18,7 @@ $(function(){
     element: $('#board .column-container')
   };
 
-  $('.create-column')
-  .click(function(){
+  $('.create-column').click(function() {
     board.createColumn(new Column(prompt('Wpisz nazwę kolumny')));
   });
 
@@ -32,6 +31,7 @@ $(function(){
     this.element = createColumn();
 
     function createColumn() {
+
       // TWORZENIE NOWYCH WĘZŁÓW
       var column = $('<div class="column"></div>');
       var columnTitle = $('<h2 class="column-title">' + self.name + '</h2>');
@@ -50,9 +50,10 @@ $(function(){
 
       // KONSTRUOWANIE ELEMENTU KOLUMNY
       column.append(columnTitle)
-      .append(columnDelete)
-      .append(columnAddCard)
-      .append(columnCardList);
+            .append(columnDelete)
+            .append(columnAddCard)
+            .append(columnCardList);
+
       return column;
     }
   }
@@ -74,18 +75,23 @@ $(function(){
     this.element = createCard();
 
     function createCard() {
+
       var card = $('<li class="card"></li>');
       var cardDeleteBtn = $('<button class="btn-delete">x</button>');
       var cardDescription = $('<p class="card-description"></p>');
-      cardDeleteBtn.click(function(){
+
+      cardDeleteBtn.click(function() {
         self.removeCard();
       });
+
       card.append(cardDeleteBtn);
       cardDescription.text(self.description);
-      card.append(cardDescription)
+      card.append(cardDescription);
+
       return card;
     }
   }
+
   Card.prototype = {
     removeCard: function() {
       this.element.remove();
@@ -109,4 +115,4 @@ $(function(){
 //   // DODAWANIE KART DO KOLUMN
 //   todoColumn.createCard(card1);
 //   doingColumn.createCard(card2);
-// })
+})

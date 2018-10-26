@@ -1,10 +1,10 @@
 var board = {
-	name: 'Tablica Kanban',
-	createColumn: function(column) {
-	  this.element.append(column.element);
-	  initSortable();
-	},
-	element: $('#board .column-container')
+  name: 'Tablica Kanban',
+  element: $('#board .column-container'),
+  createColumn: function(column) {
+    this.element.append(column.element);
+    initSortable();
+  }
 };
 
 $('.create-column').click(function() {
@@ -14,20 +14,23 @@ $('.create-column').click(function() {
       url: baseUrl + '/column',
       method: 'POST',
       data: {
-          name: columnName
+        name: columnName
       },
-      success: function(response){
-          var column = new Column(response.id, columnName);
-          board.createColumn(column);
-        }
+      success: function(response) {
+        var column = new Column(response.id, columnName); //tworzona z konstruktora z Column.js
+        //najpierw tworzona jest kolumna przy użyciu id, które 
+        //dostajemy w odpowiedzi z serwera oraz nazwy kolumny, 
+        //o którą nas zapytano
+        board.createColumn(column); //dopiero potem tworzymy kolumnę na tablicy
+      }
     })
   } else {
   }	
 });
-	
+
 function initSortable() {
-    $('.card-list').sortable({
-      connectWith: '.card-list',
-      placeholder: 'card-placeholder'
-    }).disableSelection();
-  }
+  $('.card-list').sortable({
+    connectWith: '.card-list',
+    placeholder: 'card-placeholder'
+  }).disableSelection();
+}

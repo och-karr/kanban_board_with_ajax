@@ -21,7 +21,7 @@ $.ajax({
 function setupColumns(columns) {
     columns.forEach(function (column) {
   		var col = new Column(column.id, column.name); //id tworzone przez serwer
-        board.createColumn(col);
+        board.createColumn(col); //createColumn mamy w Board.js
         setupCards(col, column.cards);
     });
 }
