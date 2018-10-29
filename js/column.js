@@ -73,16 +73,19 @@ Column.prototype = {
 
     editColumn: function() {
 		var self = this;
-		var newColumnName = prompt("Enter new name of the column");
-        $.ajax({
-            url: baseUrl + '/column/' + self.id,
-			method: 'PUT',
-			data: {
-				name: newColumnName
-            },
-            success: function(response){
-                self.element.children('.column-title').text(newColumnName);
-            }
-        });
+        var newColumnName = prompt("Enter new name of the column");
+        event.preventDefault();
+        if (newColumnName != null) {
+            $.ajax({
+                url: baseUrl + '/column/' + self.id,
+                method: 'PUT',
+                data: {
+                    name: newColumnName
+                },
+                success: function(response){
+                    self.element.children('.column-title').text(newColumnName);
+                }
+            });
+        };
 	}
 }
